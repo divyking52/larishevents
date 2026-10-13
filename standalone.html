@@ -1,0 +1,2121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Larish Events — Bespoke Event Architecture &amp; Luxury Celebrations</title>
+  <meta name="description" content="Larish Events crafts timeless celebrations with architectural grace and soul across historic palazzos, Mediterranean villas, and private estates in Milan, Rome, and worldwide.">
+
+  <!-- Google Fonts: Cormorant Infant & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Optional Lenis Smooth Scroll CDN (falls back seamlessly to native scroll) -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & DESIGN TOKENS
+       ========================================================================== */
+    :root {
+      --color-ink: #2d2926;
+      --color-muted: #978a80;
+      --color-stone: #b8aca2;
+      --color-border: #d8d0c8;
+      --color-alabaster: #f4f1ed;
+      --color-white: #ffffff;
+
+      --font-display: 'Cormorant Infant', Georgia, serif;
+      --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --ease-editorial: cubic-bezier(0.44, 0, 0.56, 1);
+      --ease-snappy: cubic-bezier(0.75, -0.01, 0, 1);
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--color-white);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Lenis Smooth Scroll Rules */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHY PRESETS
+       ========================================================================== */
+    .preset-h2 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: 72px;
+      line-height: 0.9em;
+      letter-spacing: -0.04em;
+      color: var(--color-ink);
+      text-align: center;
+      text-wrap: balance;
+      text-shadow: 0px 0.5px 0px #ffffff;
+    }
+
+    .preset-h3 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: 56px;
+      line-height: 0.8em;
+      letter-spacing: -0.03em;
+      color: var(--color-ink);
+      text-align: center;
+    }
+
+    .preset-h4 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: 44px;
+      line-height: 1em;
+      letter-spacing: -0.02em;
+      color: var(--color-ink);
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .preset-h5 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: 32px;
+      line-height: 1.1em;
+      letter-spacing: -0.03em;
+      color: var(--color-ink);
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .preset-eyebrow {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 0.9em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+    }
+
+    .preset-label {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 0.9em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      text-align: center;
+    }
+
+    .preset-body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.7em;
+      color: var(--color-ink);
+      text-wrap: balance;
+    }
+
+    .preset-link {
+      color: var(--color-ink);
+      background-color: transparent;
+      padding: 0px 4px;
+      text-decoration: none;
+      display: inline-block;
+      transition: color 1s var(--ease-editorial), background-color 1s var(--ease-editorial);
+      cursor: pointer;
+    }
+    .preset-link:hover, .preset-link:focus-visible {
+      background-color: var(--color-stone);
+      color: var(--color-white);
+      outline: none;
+    }
+
+    @media (max-width: 1199.98px) and (min-width: 810px) {
+      .preset-h2 { font-size: 64px; }
+      .preset-h3 { font-size: 48px; }
+      .preset-h4 { font-size: 40px; }
+      .preset-h5 { font-size: 28px; }
+      .preset-eyebrow { font-size: 18px; }
+    }
+
+    @media (max-width: 809.98px) {
+      .preset-h2 { font-size: 56px; }
+      .preset-h3 { font-size: 40px; }
+      .preset-h4 { font-size: 36px; }
+      .preset-h5 { font-size: 24px; }
+      .preset-eyebrow { font-size: 16px; }
+    }
+
+    /* ==========================================================================
+       VIEWPORT FRAME & CORNER BOTANICAL ORNAMENTS
+       ========================================================================== */
+    .viewport-frame {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      border: 3px solid var(--color-border);
+      z-index: 10;
+    }
+
+    .corner-ornament {
+      position: absolute;
+      width: 18vw;
+      max-width: 250px;
+      min-width: 100px;
+      height: auto;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .corner-tl { top: 6px; left: 6px; transform: scaleX(-1); }
+    .corner-tr { top: 6px; right: 6px; }
+    .corner-bl { bottom: 6px; left: 6px; transform: scale(-1, -1); }
+    .corner-br { bottom: 6px; right: 6px; transform: scaleY(-1); }
+
+    /* ==========================================================================
+       FIXED TOP NAVIGATION
+       ========================================================================== */
+    .nav-fixed-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .nav-container {
+      pointer-events: auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      width: 100%;
+      padding: 20px 40px 0px 40px;
+      position: relative;
+      transition: transform 0.6s var(--ease-editorial), opacity 0.6s var(--ease-editorial);
+    }
+    .nav-container.scrolled-down {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .nav-gradient-backdrop {
+      position: absolute;
+      top: 0;
+      left: calc(50% - 500px);
+      width: 1000px;
+      height: 100%;
+      background: radial-gradient(50% 50% at 50% 50%, var(--color-white) 52.58%, rgba(255, 255, 255, 0) 100%);
+      z-index: 0;
+      pointer-events: none;
+      transition: transform 1s var(--ease-editorial);
+    }
+    .nav-container.scrolled-down .nav-gradient-backdrop {
+      transform: rotateY(80deg);
+    }
+
+    .nav-side-left, .nav-side-right {
+      display: flex;
+      flex: 1 0 0px;
+      flex-direction: row;
+      align-items: center;
+      gap: 32px;
+      position: relative;
+      z-index: 1;
+      transition: opacity 1s var(--ease-editorial), transform 1s var(--ease-editorial);
+    }
+    .nav-side-left { justify-content: flex-end; }
+    .nav-side-right { justify-content: flex-start; }
+
+    .nav-container.scrolled-down .nav-side-left,
+    .nav-container.scrolled-down .nav-side-right {
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+    }
+
+    .nav-logo-wrap {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-logo-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-logo-ornament {
+      width: 120px;
+      aspect-ratio: 6.92 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .letters-monogram {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 120px;
+      user-select: none;
+    }
+    .letters-monogram .letter-left { flex: 1; text-align: end; color: var(--color-muted); }
+    .letters-monogram .letter-amp { flex: none; color: var(--color-muted); font-size: 20px; }
+    .letters-monogram .letter-right { flex: 1; text-align: start; color: var(--color-muted); }
+
+    .nav-mobile-trigger, .nav-mobile-rsvp { display: none; }
+
+    .nav-mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--color-white);
+      border: 3px solid var(--color-border);
+      z-index: 25;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      pointer-events: auto;
+    }
+    .nav-mobile-overlay.open {
+      display: flex;
+    }
+    .nav-mobile-overlay a {
+      font-family: var(--font-display);
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-ink);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .nav-mobile-overlay a:hover {
+      color: var(--color-muted);
+    }
+
+    /* Mobile Navigation */
+    @media (max-width: 809.98px) {
+      .nav-container {
+        padding: 20px 20px 0 20px;
+      }
+      .nav-logo-wrap {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .nav-mobile-trigger, .nav-mobile-rsvp {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .nav-side-left, .nav-side-right {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       HERO SECTION (3-COLUMN EDITORIAL FULL-BLEED)
+       ========================================================================== */
+    .hero-section {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      flex: 1 0 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .hero-paper-bg {
+      position: absolute;
+      top: 0;
+      left: calc(50% - 560px);
+      width: 1120px;
+      height: 759px;
+      -webkit-mask: radial-gradient(50% 50% at 50% 50%, #000 52%, transparent 100%);
+      mask: radial-gradient(50% 50% at 50% 50%, #000 52%, transparent 100%);
+      mix-blend-mode: luminosity;
+      opacity: 0.45;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-col-left {
+      flex: 1 0 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+      will-change: transform, opacity;
+      transition: transform 0.1s linear, opacity 0.1s linear;
+    }
+
+    .hero-eyebrow {
+      width: 185px;
+      text-align: center;
+      color: var(--color-muted);
+      white-space: pre-wrap;
+      line-height: 1.15em;
+    }
+
+    .hero-names-box {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-names-amp {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 84px;
+      font-weight: 300;
+      color: var(--color-alabaster);
+      z-index: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-names-word {
+      position: relative;
+      width: auto;
+      white-space: nowrap;
+      z-index: 3;
+      text-shadow: 0px 0.5px 0px #ffffff;
+    }
+
+    .hero-main-image-wrap {
+      flex: none;
+      width: auto;
+      height: 66%;
+      max-height: 600px;
+      aspect-ratio: 0.76987448 / 1;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      will-change: transform, opacity;
+      transition: transform 0.1s linear, opacity 0.1s linear;
+    }
+
+    .hero-main-image-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      -webkit-mask-image: radial-gradient(ellipse 47% 48% at 50% 48%, #000 58%, rgba(0, 0, 0, 0.45) 80%, transparent 100%);
+      mask-image: radial-gradient(ellipse 47% 48% at 50% 48%, #000 58%, rgba(0, 0, 0, 0.45) 80%, transparent 100%);
+    }
+
+    .hero-main-image-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(0.32) contrast(0.95) brightness(1.05) saturate(0.72);
+      display: block;
+    }
+
+    .hero-col-right {
+      flex: 1 0 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+      z-index: 3;
+      pointer-events: none;
+      will-change: transform, opacity;
+      transition: transform 0.1s linear, opacity 0.1s linear;
+    }
+
+    .hero-place-top, .hero-place-bottom {
+      width: 100%;
+      text-align: center;
+      color: var(--color-muted);
+    }
+
+    .hero-date-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .hero-date-month { flex: 1; text-align: end; color: var(--color-muted); }
+    .hero-date-year { flex: 1; text-align: start; color: var(--color-muted); }
+
+    .hero-date-badge {
+      position: relative;
+      width: 72px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-date-counter {
+      position: absolute;
+      top: 50%;
+      left: 49%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -0.05em;
+      line-height: 0.8;
+      color: #000000;
+      z-index: 2;
+      user-select: none;
+    }
+
+    /* Tablet & Mobile Hero */
+    @media (min-width: 810px) and (max-width: 1199.98px) {
+      .hero-content { flex-direction: column; justify-content: center; gap: 16px; }
+      .hero-main-image-wrap { order: 1; max-width: 340px; height: 48%; }
+      .hero-col-left { order: 2; flex: none; width: 100%; gap: 12px; }
+      .hero-col-right {
+        order: 3; flex: none; width: 100%; display: grid;
+        grid-template-columns: repeat(2, minmax(50px, 1fr)); gap: 12px 16px;
+      }
+      .hero-date-row { grid-column: span 2; order: 0; }
+      .hero-place-top { order: 1; text-align: end; }
+      .hero-place-bottom { order: 2; text-align: start; }
+    }
+
+    @media (max-width: 809.98px) {
+      .hero-section { padding: 20px; }
+      .hero-content { flex-direction: column; justify-content: flex-start; padding: 64px 0 40px; }
+      .hero-main-image-wrap { order: 1; flex: 1; width: auto; max-width: 260px; max-height: 38vh; }
+      .hero-col-left { order: 2; flex: none; width: 100%; padding: 8px 0 24px; }
+      .hero-col-right {
+        order: 3; flex: none; width: 100%; display: grid;
+        grid-template-columns: repeat(2, minmax(50px, 1fr)); gap: 12px 16px; padding-bottom: 16px;
+      }
+      .hero-date-row { grid-column: span 2; order: 0; }
+      .hero-date-badge { width: 56px; }
+      .hero-date-counter { font-size: 32px; }
+      .hero-place-top { order: 1; text-align: end; }
+      .hero-place-bottom { order: 2; text-align: start; }
+    }
+
+    /* ==========================================================================
+       FALLING BOTANICAL PETALS LAYER
+       ========================================================================== */
+    .falling-petals-layer {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 15;
+      overflow: hidden;
+    }
+
+    @keyframes weddingFlowerFall {
+      0% { transform: translate3d(var(--from-x), var(--from-y), 0) scale(var(--scale)); opacity: 0; }
+      5% { opacity: var(--flower-opacity); }
+      90% { opacity: var(--flower-opacity); }
+      100% { transform: translate3d(var(--to-x), var(--land-y), 0) scale(var(--scale)); opacity: 0; }
+    }
+    @keyframes weddingFlowerRotate {
+      0% { transform: rotate(var(--start-rot)); }
+      100% { transform: rotate(var(--rotEnd)); }
+    }
+    @keyframes weddingFlowerCaughtRise {
+      0% { transform: translate3d(0, 0, 0) scale(1.08); opacity: 1; }
+      60% { opacity: 1; }
+      100% { transform: translate3d(0, -14vh, 0) scale(0.9); opacity: 0; }
+    }
+
+    .petal-item {
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: auto;
+      cursor: pointer;
+      user-select: none;
+      animation: weddingFlowerFall 10s linear infinite both;
+    }
+    .petal-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 5px rgba(45, 41, 38, 0.12));
+      animation: weddingFlowerRotate 10s linear infinite both;
+    }
+    .petal-item.caught {
+      animation-play-state: paused;
+      pointer-events: none;
+    }
+    .petal-item.caught > div {
+      animation: weddingFlowerCaughtRise 1.4s cubic-bezier(.2,.72,.22,1) forwards;
+    }
+    .petal-item.caught img {
+      filter: drop-shadow(0 4px 10px rgba(45, 41, 38, 0.25));
+    }
+
+    /* ==========================================================================
+       SECTIONS: COMMON HEADER STACK & DIVIDERS
+       ========================================================================== */
+    .section-header-stack {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px;
+      text-align: center;
+    }
+    .section-max-800 { width: 100%; max-width: 800px; }
+    .section-max-600 { width: 100%; max-width: 600px; }
+
+    .divider-ornament-wrap {
+      width: 100%;
+      max-width: 200px;
+      aspect-ratio: 8.71 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ==========================================================================
+       2. PHILOSOPHY MESSAGE SECTION (#message)
+       ========================================================================== */
+    .message-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      overflow: hidden;
+      z-index: 2;
+      background: var(--color-white);
+    }
+
+    /* ==========================================================================
+       3. OUR STORY & PINNED 2x2 3D GALLERY (#story)
+       ========================================================================== */
+    .story-section {
+      position: relative;
+      width: 100%;
+      height: 200vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      z-index: 3;
+      background: var(--color-white);
+    }
+
+    .story-text-wrap {
+      width: 100%;
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .story-images-grid {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(50px, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .story-card-slot {
+      position: relative;
+      width: fit-content;
+      height: 317px;
+      z-index: 1;
+      perspective: 1200px;
+      will-change: transform, opacity;
+      transition: transform 0.1s linear, opacity 0.1s linear;
+    }
+    .story-card-slot.slot-1 {
+      align-self: end;
+      justify-self: end;
+      transform: translate3d(-100px, -50px, 0) rotate(-10deg) rotateX(30deg) rotateY(-30deg) scale(0.8);
+    }
+    .story-card-slot.slot-2 {
+      align-self: end;
+      justify-self: start;
+      transform: translate3d(150px, -50px, 0) rotate(10deg) rotateX(30deg) rotateY(30deg) scale(0.8);
+    }
+    .story-card-slot.slot-3 {
+      align-self: start;
+      justify-self: end;
+      transform: translate3d(-100px, 50px, 0) rotate(-20deg) rotateX(-30deg) rotateY(-30deg) scale(0.8);
+    }
+    .story-card-slot.slot-4 {
+      align-self: start;
+      justify-self: start;
+      transform: translate3d(100px, 50px, 0) rotate(20deg) rotateX(-30deg) rotateY(30deg) scale(0.8);
+    }
+
+    .story-image-mat {
+      height: 100%;
+      width: min-content;
+      padding: 50px;
+      background-color: var(--color-alabaster);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .story-image-mat img {
+      height: 100%;
+      width: auto;
+      aspect-ratio: 1.38 / 1;
+      object-fit: cover;
+      display: block;
+      filter: sepia(0.32) contrast(0.95) brightness(1.03) saturate(0.68);
+    }
+
+    @media (max-width: 809.98px) {
+      .story-section {
+        height: auto;
+        padding-top: 40px;
+        padding-bottom: 80px;
+        overflow: hidden;
+      }
+      .story-text-wrap {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      .story-images-grid {
+        position: relative;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+        padding: 40px 20px;
+        perspective: 1200px;
+      }
+      .story-card-slot,
+      .story-card-slot.slot-1,
+      .story-card-slot.slot-2,
+      .story-card-slot.slot-3,
+      .story-card-slot.slot-4 {
+        position: relative;
+        align-self: center;
+        justify-self: center;
+        height: 290px;
+        width: 100%;
+        max-width: 320px;
+        perspective: 1000px;
+        will-change: transform, opacity;
+        transition: transform 0.12s linear, opacity 0.12s linear;
+      }
+      .story-image-mat {
+        width: 100%;
+        height: 100%;
+        padding: 30px;
+        background-color: var(--color-alabaster);
+        box-shadow: 0 14px 35px -8px rgba(45, 41, 38, 0.15), 0 2px 6px rgba(45, 41, 38, 0.05);
+      }
+      .story-image-mat img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Venue images subtle parallax zoom on mobile */
+      .ceremony-venue-col {
+        perspective: 1000px;
+      }
+      .ceremony-image-mat {
+        overflow: hidden;
+      }
+      .ceremony-image-mat img {
+        will-change: transform;
+        transition: transform 0.15s linear;
+      }
+    }
+
+    /* ==========================================================================
+       4. SIGNATURE PRODUCTIONS / VENUES (#ceremony)
+       ========================================================================== */
+    .ceremony-section {
+      position: relative;
+      width: 100%;
+      padding: 64px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      z-index: 4;
+      background: var(--color-white);
+    }
+
+    .ceremony-dual-row {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .ceremony-column {
+      flex: 1 0 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+    }
+
+    .ceremony-col-header {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .ceremony-image-mat {
+      width: 100%;
+      padding: 80px;
+      background-color: var(--color-alabaster);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .ceremony-image-frame {
+      width: 100%;
+      aspect-ratio: 1.433 / 1;
+      overflow: hidden;
+    }
+    .ceremony-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: sepia(0.30) contrast(0.95) brightness(1.03) saturate(0.70);
+    }
+
+    .ceremony-meta-stack {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+    }
+
+    @media (max-width: 1199.98px) {
+      .ceremony-dual-row { flex-direction: column; gap: 80px; }
+      .ceremony-column { width: 100%; }
+    }
+    @media (max-width: 809.98px) {
+      .ceremony-section { padding: 72px 20px; }
+      .ceremony-image-mat { padding: 40px; }
+    }
+
+    /* ==========================================================================
+       5. THE CURATION / SCHEDULE (#schedule)
+       ========================================================================== */
+    .schedule-section {
+      position: relative;
+      width: 100%;
+      padding: 64px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 80px;
+      z-index: 4;
+      background: var(--color-white);
+    }
+
+    .schedule-list {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .schedule-item {
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       6. QUESTIONS / FAQ ACCORDION (#faq)
+       ========================================================================== */
+    .faq-section {
+      position: relative;
+      width: 100%;
+      padding: 64px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 64px;
+      z-index: 4;
+      background: var(--color-white);
+    }
+
+    .faq-list {
+      width: 100%;
+      max-width: 650px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .faq-item {
+      width: 100%;
+      border-bottom: 1px solid var(--color-border);
+      cursor: pointer;
+      overflow: hidden;
+      text-align: center;
+      padding-bottom: 24px;
+      transition: padding-bottom 0.5s var(--ease-editorial);
+    }
+    .faq-item.opened { padding-bottom: 32px; }
+
+    .faq-question {
+      width: 100%;
+      color: var(--color-ink);
+      transition: color 0.4s var(--ease-editorial);
+      user-select: none;
+    }
+    .faq-item:not(.opened):hover .faq-question {
+      color: var(--color-border);
+    }
+
+    .faq-answer-wrap {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.6s var(--ease-editorial), opacity 0.6s var(--ease-editorial), margin-top 0.4s ease;
+    }
+    .faq-item.opened .faq-answer-wrap {
+      max-height: 200px;
+      opacity: 1;
+      margin-top: 16px;
+    }
+
+    /* ==========================================================================
+       7. PRIVATE CONSULTATION / RSVP FORM (#rsvp)
+       ========================================================================== */
+    .rsvp-section {
+      position: relative;
+      width: 100%;
+      padding: 64px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 64px;
+      z-index: 4;
+      background: var(--color-white);
+    }
+
+    .rsvp-form-grid {
+      width: 100%;
+      max-width: 650px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(50px, 1fr));
+      gap: 40px 32px;
+    }
+
+    .rsvp-field {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      width: 100%;
+    }
+    .rsvp-field.span-2 { grid-column: span 2; }
+
+    .rsvp-input, .rsvp-select, .rsvp-textarea {
+      width: 100%;
+      padding: 20px;
+      border: 1px solid var(--color-border);
+      background-color: transparent;
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5em;
+      outline: none;
+      border-radius: 0;
+      transition: all 0.6s var(--ease-editorial);
+      appearance: none;
+    }
+    .rsvp-input:focus, .rsvp-select:focus, .rsvp-textarea:focus {
+      background-color: rgba(216, 208, 200, 0.5);
+      border-color: transparent;
+    }
+    .rsvp-select-wrapper { position: relative; width: 100%; }
+    .rsvp-select-caret {
+      position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+      pointer-events: none; color: var(--color-stone); font-size: 12px;
+    }
+    .rsvp-textarea { min-height: 100px; resize: vertical; }
+
+    .form-submit-btn {
+      grid-column: span 2;
+      width: 100%;
+      height: 40px;
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.8s var(--ease-editorial);
+    }
+    .form-submit-btn:hover:not(:disabled) {
+      background-color: var(--color-border);
+    }
+    .form-submit-line {
+      width: 1px;
+      height: 100%;
+      background-color: var(--color-border);
+      transition: background-color 0.8s var(--ease-editorial), opacity 0.8s ease;
+    }
+    .form-submit-btn:hover .form-submit-line { background-color: transparent; }
+
+    .form-submit-spinner {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg at 50% 50%, transparent 7deg, var(--color-border) 343deg);
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0);
+      mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0);
+      animation: formSpinnerRotate 1s linear infinite;
+      display: none;
+    }
+    @keyframes formSpinnerRotate {
+      from { transform: rotate(0deg); } to { transform: rotate(360deg); }
+    }
+    .form-submit-btn.loading .form-submit-spinner { display: block; }
+    .form-submit-btn.loading .btn-text { display: none; }
+    .form-submit-btn.success {
+      background-color: var(--color-ink);
+      cursor: default;
+    }
+    .form-submit-btn.success .btn-text {
+      color: var(--color-border);
+    }
+    .form-submit-btn.success .form-submit-line { opacity: 0; }
+
+    @media (max-width: 809.98px) {
+      .rsvp-form-grid { grid-template-columns: 1fr; }
+      .rsvp-field.span-2, .form-submit-btn { grid-column: span 1; }
+    }
+
+    /* ==========================================================================
+       8. FOOTER SECTION
+       ========================================================================== */
+    .footer-section {
+      position: relative;
+      width: 100%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 24px;
+      z-index: 4;
+      background: var(--color-white);
+    }
+
+    .footer-names-row {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 0px;
+    }
+    .footer-names-amp {
+      font-size: 72px;
+      font-weight: 300;
+      color: var(--color-alabaster);
+      padding: 0 4px;
+    }
+
+    .footer-meta-text {
+      max-width: 320px;
+      width: 100%;
+      text-align: center;
+      color: var(--color-muted);
+    }
+
+    /* Sticky Bottom CTA */
+    .sticky-bottom-cta-wrap {
+      position: fixed;
+      bottom: 0;
+      left: calc(50% - 75px);
+      width: 150px;
+      height: 60px;
+      background: radial-gradient(50% 50% at 50% 50%, var(--color-white) 46.12%, rgba(255, 255, 255, 0) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 18;
+      transition: transform 0.6s var(--ease-editorial), opacity 0.6s var(--ease-editorial);
+    }
+    .sticky-bottom-cta-wrap.hidden {
+      transform: scale(0);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .sticky-rsvp-btn {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: gap 0.8s var(--ease-editorial), background-color 0.8s var(--ease-editorial);
+    }
+    .sticky-rsvp-btn:hover {
+      gap: 24px;
+      background-color: var(--color-border);
+    }
+    .sticky-rsvp-line {
+      width: 1px;
+      height: 18px;
+      background-color: var(--color-border);
+      transition: background-color 0.8s var(--ease-editorial);
+    }
+    .sticky-rsvp-btn:hover .sticky-rsvp-line { background-color: transparent; }
+
+    @media (max-width: 809.98px) {
+      .sticky-bottom-cta-wrap { display: none !important; }
+      .footer-names-row { flex-direction: column; }
+    }
+
+    /* Blur Entrance Animation */
+    .blur-reveal {
+      filter: blur(4px);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: filter 0.6s var(--ease-editorial), opacity 0.6s var(--ease-editorial), transform 0.6s var(--ease-editorial);
+      will-change: filter, opacity, transform;
+    }
+    .blur-reveal.revealed {
+      filter: blur(0px);
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       FIXED VIEWPORT ORNAMENTAL FRAME (EDGE-TO-EDGE FULL-BLEED)
+       ========================================================================== -->
+  <div class="viewport-frame" aria-hidden="true">
+    <!-- Top-Left Corner -->
+    <svg viewBox="0 0 500 520" fill="none" class="corner-ornament corner-tl">
+      <g stroke="#8a7d72" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 24 48 C 20 68, 65 72, 95 45 C 125 18, 175 16, 235 48 C 305 85, 385 165, 435 265 C 475 345, 482 415, 455 432 C 430 448, 412 425, 424 405" stroke-width="2.4"/>
+        <path d="M 94 46 C 88 66, 106 82, 120 72 C 132 63, 126 48, 114 50" stroke-width="1.8"/>
+        <path d="M 442 280 C 420 260, 392 275, 396 305 C 400 330, 422 332, 420 315" stroke-width="1.7"/>
+        <path d="M 465 360 C 476 418, 455 468, 462 492 C 466 504, 476 502, 480 496" stroke-width="1.4"/>
+        <path d="M 182 62 C 192 48, 224 58, 265 92 C 305 125, 338 162, 368 202" stroke-width="1.2"/>
+        <path d="M 380 202 C 345 170, 298 158, 265 186 C 282 180, 298 184, 315 182 C 335 190, 358 192, 382 204 Z" fill="#fcfaf7" stroke-width="1.5"/>
+        <g transform="translate(402, 56)">
+          <path d="M 10 58 C -4 38, 2 12, 16 2 C 24 8, 26 22, 24 38" fill="#fdfcfa" stroke-width="1.4"/>
+          <path d="M 16 58 C 16 32, 28 8, 46 2 C 52 12, 48 28, 38 44" fill="#fdfcfa" stroke-width="1.4"/>
+          <path d="M 18 60 C 26 36, 46 16, 62 18 C 64 32, 54 48, 34 58" fill="#fdfcfa" stroke-width="1.4"/>
+          <path d="M 8 56 C 12 64, 22 66, 28 58" fill="#8a7d72" fill-opacity="0.25" stroke-width="1.3"/>
+        </g>
+      </g>
+    </svg>
+
+    <!-- Top-Right Corner -->
+    <svg viewBox="0 0 500 520" fill="none" class="corner-ornament corner-tr">
+      <g stroke="#8a7d72" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 24 48 C 20 68, 65 72, 95 45 C 125 18, 175 16, 235 48 C 305 85, 385 165, 435 265 C 475 345, 482 415, 455 432 C 430 448, 412 425, 424 405" stroke-width="2.4"/>
+        <path d="M 94 46 C 88 66, 106 82, 120 72 C 132 63, 126 48, 114 50" stroke-width="1.8"/>
+        <path d="M 442 280 C 420 260, 392 275, 396 305 C 400 330, 422 332, 420 315" stroke-width="1.7"/>
+        <path d="M 465 360 C 476 418, 455 468, 462 492 C 466 504, 476 502, 480 496" stroke-width="1.4"/>
+        <path d="M 182 62 C 192 48, 224 58, 265 92 C 305 125, 338 162, 368 202" stroke-width="1.2"/>
+        <path d="M 380 202 C 345 170, 298 158, 265 186 C 282 180, 298 184, 315 182 C 335 190, 358 192, 382 204 Z" fill="#fcfaf7" stroke-width="1.5"/>
+        <g transform="translate(402, 56)">
+          <path d="M 10 58 C -4 38, 2 12, 16 2 C 24 8, 26 22, 24 38" fill="#fdfcfa" stroke-width="1.4"/>
+          <path d="M 16 58 C 16 32, 28 8, 46 2 C 52 12, 48 28, 38 44" fill="#fdfcfa" stroke-width="1.4"/>
+          <path d="M 18 60 C 26 36, 46 16, 62 18 C 64 32, 54 48, 34 58" fill="#fdfcfa" stroke-width="1.4"/>
+          <path d="M 8 56 C 12 64, 22 66, 28 58" fill="#8a7d72" fill-opacity="0.25" stroke-width="1.3"/>
+        </g>
+      </g>
+    </svg>
+
+    <!-- Bottom-Left Corner -->
+    <svg viewBox="0 0 500 520" fill="none" class="corner-ornament corner-bl">
+      <g stroke="#8a7d72" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 24 48 C 20 68, 65 72, 95 45 C 125 18, 175 16, 235 48 C 305 85, 385 165, 435 265 C 475 345, 482 415, 455 432 C 430 448, 412 425, 424 405" stroke-width="2.4"/>
+        <path d="M 94 46 C 88 66, 106 82, 120 72 C 132 63, 126 48, 114 50" stroke-width="1.8"/>
+        <path d="M 442 280 C 420 260, 392 275, 396 305 C 400 330, 422 332, 420 315" stroke-width="1.7"/>
+        <path d="M 465 360 C 476 418, 455 468, 462 492 C 466 504, 476 502, 480 496" stroke-width="1.4"/>
+        <path d="M 182 62 C 192 48, 224 58, 265 92 C 305 125, 338 162, 368 202" stroke-width="1.2"/>
+        <path d="M 380 202 C 345 170, 298 158, 265 186 C 282 180, 298 184, 315 182 C 335 190, 358 192, 382 204 Z" fill="#fcfaf7" stroke-width="1.5"/>
+        <g transform="translate(402, 56)">
+          <path d="M 10 58 C -4 38, 2 12, 16 2 C 24 8, 26 22, 24 38" fill="#fdfcfa" stroke-width="1.4"/>
+          <path d="M 16 58 C 16 32, 28 8, 46 2 C 52 12, 48 28, 38 44" fill="#fdfcfa" stroke-width="1.4"/>
+          <path d="M 18 60 C 26 36, 46 16, 62 18 C 64 32, 54 48, 34 58" fill="#fdfcfa" stroke-width="1.4"/>
+          <path d="M 8 56 C 12 64, 22 66, 28 58" fill="#8a7d72" fill-opacity="0.25" stroke-width="1.3"/>
+        </g>
+      </g>
+    </svg>
+
+    <!-- Bottom-Right Corner -->
+    <svg viewBox="0 0 500 520" fill="none" class="corner-ornament corner-br">
+      <g stroke="#8a7d72" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 24 48 C 20 68, 65 72, 95 45 C 125 18, 175 16, 235 48 C 305 85, 385 165, 435 265 C 475 345, 482 415, 455 432 C 430 448, 412 425, 424 405" stroke-width="2.4"/>
+        <path d="M 94 46 C 88 66, 106 82, 120 72 C 132 63, 126 48, 114 50" stroke-width="1.8"/>
+        <path d="M 442 280 C 420 260, 392 275, 396 305 C 400 330, 422 332, 420 315" stroke-width="1.7"/>
+        <path d="M 465 360 C 476 418, 455 468, 462 492 C 466 504, 476 502, 480 496" stroke-width="1.4"/>
+        <path d="M 182 62 C 192 48, 224 58, 265 92 C 305 125, 338 162, 368 202" stroke-width="1.2"/>
+        <path d="M 380 202 C 345 170, 298 158, 265 186 C 282 180, 298 184, 315 182 C 335 190, 358 192, 382 204 Z" fill="#fcfaf7" stroke-width="1.5"/>
+        <g transform="translate(402, 56)">
+          <path d="M 10 58 C -4 38, 2 12, 16 2 C 24 8, 26 22, 24 38" fill="#fdfcfa" stroke-width="1.4"/>
+          <path d="M 16 58 C 16 32, 28 8, 46 2 C 52 12, 48 28, 38 44" fill="#fdfcfa" stroke-width="1.4"/>
+          <path d="M 18 60 C 26 36, 46 16, 62 18 C 64 32, 54 48, 34 58" fill="#fdfcfa" stroke-width="1.4"/>
+          <path d="M 8 56 C 12 64, 22 66, 28 58" fill="#8a7d72" fill-opacity="0.25" stroke-width="1.3"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ==========================================================================
+       FALLING INTERACTIVE BOTANICAL PETALS
+       ========================================================================== -->
+  <div class="falling-petals-layer" id="petals-container"></div>
+
+  <!-- ==========================================================================
+       FIXED HEADER NAVIGATION
+       ========================================================================== */
+  -->
+  <header class="nav-fixed-wrapper">
+    <nav class="nav-container" id="nav-container">
+      <div class="nav-gradient-backdrop"></div>
+
+      <!-- Left Links -->
+      <div class="nav-side-left">
+        <p class="preset-label"><a href="#story" class="preset-link">our ethos</a></p>
+        <p class="preset-label"><a href="#ceremony" class="preset-link">productions</a></p>
+      </div>
+
+      <!-- Center Monogram -->
+      <div class="nav-logo-wrap">
+        <button type="button" class="nav-mobile-trigger preset-label" id="mobile-menu-btn">menu</button>
+
+        <a href="#top" class="nav-logo-link" aria-label="Larish Events Home">
+          <div class="nav-logo-ornament">
+            <svg viewBox="0 0 692 100" fill="none" style="width:100%;height:auto;">
+              <g stroke="#8a7d72" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 14 48 C 48 68, 114 64, 168 28 C 206 4, 254 4, 298 38" stroke-width="3.2"/>
+                <path d="M 168 28 C 154 52, 166 84, 194 84 C 216 84, 226 62, 212 48 C 204 42, 196 46, 198 52" stroke-width="2.6"/>
+                <circle cx="14" cy="48" r="4.5" fill="#8a7d72" />
+                <g transform="translate(692, 0) scale(-1, 1)">
+                  <path d="M 14 48 C 48 68, 114 64, 168 28 C 206 4, 254 4, 298 38" stroke-width="3.2"/>
+                  <path d="M 168 28 C 154 52, 166 84, 194 84 C 216 84, 226 62, 212 48 C 204 42, 196 46, 198 52" stroke-width="2.6"/>
+                  <circle cx="14" cy="48" r="4.5" fill="#8a7d72" />
+                </g>
+                <g transform="translate(346, 50)">
+                  <circle cx="0" cy="0" r="6" fill="#faf8f5" stroke="#8a7d72" stroke-width="2.2" />
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="letters-monogram">
+            <h3 class="preset-h3 letter-left">L</h3>
+            <p class="preset-eyebrow letter-amp">&amp;</p>
+            <h3 class="preset-h3 letter-right">E</h3>
+          </div>
+        </a>
+
+        <p class="nav-mobile-rsvp preset-label"><a href="#rsvp" class="preset-link">inquire</a></p>
+      </div>
+
+      <!-- Right Links -->
+      <div class="nav-side-right">
+        <p class="preset-label"><a href="#schedule" class="preset-link">curation</a></p>
+        <p class="preset-label"><a href="#faq" class="preset-link">questions</a></p>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="nav-mobile-overlay" id="mobile-overlay">
+    <a href="#story" class="mobile-nav-link">our ethos</a>
+    <a href="#ceremony" class="mobile-nav-link">productions</a>
+    <a href="#schedule" class="mobile-nav-link">curation</a>
+    <a href="#faq" class="mobile-nav-link">questions</a>
+  </div>
+
+  <!-- Sticky Bottom Inquire CTA -->
+  <div class="sticky-bottom-cta-wrap" id="sticky-bottom-btn">
+    <a href="#rsvp" class="sticky-rsvp-btn" aria-label="Inquire &amp; Reserve">
+      <span class="sticky-rsvp-line"></span>
+      <span class="preset-eyebrow" style="padding: 0 2px;">INQUIRE</span>
+      <span class="sticky-rsvp-line"></span>
+    </a>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         1. STICKY HERO SECTION
+         ========================================================================== -->
+    <header class="hero-section" id="top">
+      <div class="hero-content">
+        <!-- Paper Texture SVG -->
+        <div class="hero-paper-bg" aria-hidden="true">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise"/>
+                <feDiffuseLighting in="noise" lightingColor="#f4f1ed" surfaceScale="1.6" result="lit">
+                  <feDistantLight azimuth="45" elevation="62" />
+                </feDiffuseLighting>
+              </filter>
+            </defs>
+            <rect width="100%" height="100%" fill="#f4f1ed" filter="url(#grain)" opacity="0.65" />
+          </svg>
+        </div>
+
+        <!-- Left Column -->
+        <div class="hero-col-left" id="hero-left">
+          <p class="preset-eyebrow hero-eyebrow blur-reveal">bespoke event architecture</p>
+          <div class="hero-names-box">
+            <h2 class="preset-h2 hero-names-amp">&amp;</h2>
+            <h2 class="preset-h2 hero-names-word blur-reveal" style="transition-delay: 0.1s;">Larish</h2>
+            <h2 class="preset-h2 hero-names-word blur-reveal" style="transition-delay: 0.8s;">Events</h2>
+          </div>
+        </div>
+
+        <!-- Center Image -->
+        <div class="hero-main-image-wrap" id="hero-center">
+          <div class="hero-main-image-inner">
+            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=85" alt="Larish Events bespoke floral and architectural centerpiece" fetchpriority="high">
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="hero-col-right" id="hero-right">
+          <p class="preset-eyebrow hero-place-top blur-reveal">milan · rome</p>
+          <div class="hero-date-row">
+            <p class="preset-eyebrow hero-date-month blur-reveal">Est.</p>
+            <div class="hero-date-badge">
+              <span class="hero-date-counter" id="counter-val">0</span>
+              <!-- Cartouche Brackets -->
+              <svg viewBox="0 0 140 24" fill="none" style="width: 42px; position: absolute; top: -1px; left: 50%; transform: translateX(-50%) rotate(180deg);">
+                <path d="M 12 16 C 4 16, 2 6, 14 4 C 32 2, 52 20, 70 20 C 88 20, 108 2, 126 4 C 138 6, 136 16, 128 16 C 122 16, 122 10, 126 10" stroke="#8a7d72" stroke-width="2.6" stroke-linecap="round"/>
+              </svg>
+              <svg viewBox="0 0 140 24" fill="none" style="width: 42px; position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);">
+                <path d="M 12 16 C 4 16, 2 6, 14 4 C 32 2, 52 20, 70 20 C 88 20, 108 2, 126 4 C 138 6, 136 16, 128 16 C 122 16, 122 10, 126 10" stroke="#8a7d72" stroke-width="2.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <p class="preset-eyebrow hero-date-year blur-reveal">2027</p>
+          </div>
+          <p class="preset-eyebrow hero-place-bottom blur-reveal">worldwide</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==========================================================================
+         2. PHILOSOPHY MESSAGE SECTION (#message)
+         ========================================================================== -->
+    <section id="message" class="message-section">
+      <div class="section-header-stack">
+        <p class="preset-label blur-reveal">THE ART OF GATHERING</p>
+        <h2 class="preset-h2 section-max-800 blur-reveal">Crafting timeless celebrations with architectural grace and soul</h2>
+        <div class="divider-ornament-wrap blur-reveal">
+          <svg viewBox="0 0 3328 382" fill="none" style="width:100%;height:auto;">
+            <g stroke="#8a7d72" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 80 191 C 420 280, 920 280, 1480 191" stroke-width="5"/>
+              <path d="M 1848 191 C 2408 280, 2908 280, 3248 191" stroke-width="5"/>
+              <circle cx="1664" cy="191" r="28" fill="#faf8f5" stroke-width="5"/>
+            </g>
+          </svg>
+        </div>
+        <p class="preset-body section-max-600 blur-reveal">
+          At Larish Events, we transform historic palazzos, sunlit Mediterranean villas, and private estates into living works of art. Every celebration is conceived from the ground up with poetic scenography, refined hospitality, and quiet luxury.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. OUR STORY & PINNED 2x2 3D GALLERY (#story)
+         ========================================================================== -->
+    <section id="story" class="story-section">
+      <div class="story-text-wrap">
+        <div class="section-header-stack">
+          <p class="preset-label blur-reveal">OUR ETHOS</p>
+          <h2 class="preset-h2 section-max-800 blur-reveal">Where architectural heritage meets private intimacy</h2>
+          <div class="divider-ornament-wrap blur-reveal">
+            <svg viewBox="0 0 3328 382" fill="none" style="width:100%;height:auto;">
+              <g stroke="#8a7d72" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 80 191 C 420 280, 920 280, 1480 191" stroke-width="5"/>
+                <path d="M 1848 191 C 2408 280, 2908 280, 3248 191" stroke-width="5"/>
+                <circle cx="1664" cy="191" r="28" fill="#faf8f5" stroke-width="5"/>
+              </g>
+            </svg>
+          </div>
+          <h5 class="preset-h5 section-max-600 blur-reveal">
+            Great celebrations never feel staged. They unfold like a cherished memory—effortless in rhythm, intimate in scale, and unforgettable in every sensory detail.
+          </h5>
+        </div>
+      </div>
+
+      <!-- Sticky 2x2 Gallery -->
+      <div class="story-images-grid" id="story-grid">
+        <div class="story-card-slot slot-1" id="card-1">
+          <div class="story-image-mat">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85" alt="Palazzo gala banquet dinner setting">
+          </div>
+        </div>
+        <div class="story-card-slot slot-2" id="card-2">
+          <div class="story-image-mat">
+            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=85" alt="Intimate celebration moments in Italy">
+          </div>
+        </div>
+        <div class="story-card-slot slot-3" id="card-3">
+          <div class="story-image-mat">
+            <img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1200&q=85" alt="Sunlit Mediterranean terrace reception">
+          </div>
+        </div>
+        <div class="story-card-slot slot-4" id="card-4">
+          <div class="story-image-mat">
+            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=85" alt="Grand bridal floral installation">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. SIGNATURE PRODUCTIONS / VENUES (#ceremony)
+         ========================================================================== -->
+    <section id="ceremony" class="ceremony-section">
+      <div class="section-header-stack">
+        <p class="preset-label blur-reveal">SIGNATURE PRODUCTIONS</p>
+        <h2 class="preset-h2 section-max-800 blur-reveal">Iconic sanctuaries across the Mediterranean</h2>
+        <div class="divider-ornament-wrap blur-reveal">
+          <svg viewBox="0 0 3328 382" fill="none" style="width:100%;height:auto;">
+            <g stroke="#8a7d72" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 80 191 C 420 280, 920 280, 1480 191" stroke-width="5"/>
+              <path d="M 1848 191 C 2408 280, 2908 280, 3248 191" stroke-width="5"/>
+              <circle cx="1664" cy="191" r="28" fill="#faf8f5" stroke-width="5"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="ceremony-dual-row">
+        <!-- Venue 1 -->
+        <div class="ceremony-column">
+          <div class="ceremony-col-header">
+            <p class="preset-label">DESTINATION WEDDINGS</p>
+            <h4 class="preset-h4">Villa Medici &amp; Gardens</h4>
+            <p class="preset-body">Exchange vows surrounded by Renaissance architecture, manicured cypress avenues, and bespoke botanical scenography bathed in golden Roman light.</p>
+          </div>
+          <div class="ceremony-image-mat">
+            <div class="ceremony-image-frame">
+              <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1400&q=85" alt="Villa Medici estate ceremony">
+            </div>
+          </div>
+          <div class="ceremony-meta-stack">
+            <p class="preset-eyebrow">ROMA · ITALIA</p>
+            <p class="preset-label">PRIVATE HISTORIC ESTATE</p>
+          </div>
+        </div>
+
+        <!-- Venue 2 -->
+        <div class="ceremony-column">
+          <div class="ceremony-col-header">
+            <p class="preset-label">PRIVATE GALAS &amp; SOIRÉES</p>
+            <h4 class="preset-h4">The Belvedere Terrace</h4>
+            <p class="preset-body">Following the ceremony, guests gather for Michelin-curated dining, live orchestral performances, and candlelit celebration beneath the stars.</p>
+          </div>
+          <div class="ceremony-image-mat">
+            <div class="ceremony-image-frame">
+              <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=1400&q=85" alt="Belvedere terrace reception at dusk">
+            </div>
+          </div>
+          <div class="ceremony-meta-stack">
+            <p class="preset-eyebrow">FIRENZE · TOSCANA</p>
+            <p class="preset-label">EXCLUSIVE CLIFFSIDE PANORAMA</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. THE CURATION / SCHEDULE (#schedule)
+         ========================================================================== -->
+    <section id="schedule" class="schedule-section">
+      <div class="section-header-stack">
+        <p class="preset-label blur-reveal">THE CURATION</p>
+        <h2 class="preset-h2 section-max-800 blur-reveal">Our Signature Journey</h2>
+        <div class="divider-ornament-wrap blur-reveal">
+          <svg viewBox="0 0 3328 382" fill="none" style="width:100%;height:auto;">
+            <g stroke="#8a7d72" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 80 191 C 420 280, 920 280, 1480 191" stroke-width="5"/>
+              <path d="M 1848 191 C 2408 280, 2908 280, 3248 191" stroke-width="5"/>
+              <circle cx="1664" cy="191" r="28" fill="#faf8f5" stroke-width="5"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="schedule-list">
+        <div class="schedule-item blur-reveal">
+          <p class="preset-label">PHASE I · 01</p>
+          <h4 class="preset-h4">Architectural Discovery</h4>
+          <p class="preset-body">An intimate consultation to distill your aesthetic vision, guest sensibility, and destination heritage into a bespoke creative blueprint.</p>
+        </div>
+        <div class="schedule-item blur-reveal">
+          <p class="preset-label">PHASE II · 02</p>
+          <h4 class="preset-h4">Venue Scouting &amp; Curation</h4>
+          <p class="preset-body">Private access to historic Italian villas, palazzos, and coastal estates, matching architectural grandeur with effortless guest flow.</p>
+        </div>
+        <div class="schedule-item blur-reveal">
+          <p class="preset-label">PHASE III · 03</p>
+          <h4 class="preset-h4">Scenography &amp; Floral Design</h4>
+          <p class="preset-body">Custom spatial design, couture botanical installations, ambient architectural lighting, and bespoke tablescapes tailored to your celebration.</p>
+        </div>
+        <div class="schedule-item blur-reveal">
+          <p class="preset-label">PHASE IV · 04</p>
+          <h4 class="preset-h4">Gastronomy &amp; Hospitality</h4>
+          <p class="preset-body">Collaborations with celebrated culinary masters and sommeliers to design multi-course sensory dining rooted in Italian terroir.</p>
+        </div>
+        <div class="schedule-item blur-reveal">
+          <p class="preset-label">PHASE V · 05</p>
+          <h4 class="preset-h4">Flawless Day-Of Execution</h4>
+          <p class="preset-body">Seamless, whisper-quiet backstage orchestration ensuring you and your guests remain wholly present in each transcendent moment.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. QUESTIONS / FAQ ACCORDION (#faq)
+         ========================================================================== -->
+    <section id="faq" class="faq-section">
+      <div class="section-header-stack">
+        <h2 class="preset-h2 section-max-800 blur-reveal">Questions</h2>
+        <div class="divider-ornament-wrap blur-reveal">
+          <svg viewBox="0 0 3328 382" fill="none" style="width:100%;height:auto;">
+            <g stroke="#8a7d72" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 80 191 C 420 280, 920 280, 1480 191" stroke-width="5"/>
+              <path d="M 1848 191 C 2408 280, 2908 280, 3248 191" stroke-width="5"/>
+              <circle cx="1664" cy="191" r="28" fill="#faf8f5" stroke-width="5"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item opened">
+          <h5 class="preset-h5 faq-question">When should we commission Larish Events?</h5>
+          <div class="faq-answer-wrap">
+            <p class="preset-body">We accept a limited number of twelve full-scale productions each year. We recommend inquiring 9 to 18 months prior to your desired celebration date to secure iconic historic estates.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h5 class="preset-h5 faq-question">Do you orchestrate multi-day destination celebrations?</h5>
+          <div class="faq-answer-wrap">
+            <p class="preset-body">Yes. We specialize in comprehensive weekend wedding experiences including welcome aperitivos, scenic excursions, main gala evenings, and restorative recovery brunches.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h5 class="preset-h5 faq-question">Which destinations do you specialize in?</h5>
+          <div class="faq-answer-wrap">
+            <p class="preset-body">Our primary hubs are Rome, Florence, Lake Como, the Amalfi Coast, Venice, and the French Riviera, along with select private estates worldwide.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h5 class="preset-h5 faq-question">How is the creative and floral direction handled?</h5>
+          <div class="faq-answer-wrap">
+            <p class="preset-body">Every visual element is designed in-house through 3D spatial renders, material samples, and direct collaborations with Europe's finest floral artisans.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h5 class="preset-h5 faq-question">Can you accommodate private estates or non-traditional venues?</h5>
+          <div class="faq-answer-wrap">
+            <p class="preset-body">Absolutely. Our production engineers build bespoke temporary infrastructure—including luxury climate-controlled pavilions, power grids, and commercial satellite kitchens.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. PRIVATE CONSULTATION / RSVP FORM (#rsvp)
+         ========================================================================== -->
+    <section id="rsvp" class="rsvp-section">
+      <div class="section-header-stack" id="rsvp-title">
+        <p class="preset-label blur-reveal">PRIVATE CONSULTATION</p>
+        <h2 class="preset-h2 section-max-800 blur-reveal">Shall we begin planning?</h2>
+        <div class="divider-ornament-wrap blur-reveal">
+          <svg viewBox="0 0 3328 382" fill="none" style="width:100%;height:auto;">
+            <g stroke="#8a7d72" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 80 191 C 420 280, 920 280, 1480 191" stroke-width="5"/>
+              <path d="M 1848 191 C 2408 280, 2908 280, 3248 191" stroke-width="5"/>
+              <circle cx="1664" cy="191" r="28" fill="#faf8f5" stroke-width="5"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <form class="rsvp-form-grid" id="rsvp-form">
+        <div class="rsvp-field">
+          <label class="preset-label" for="f-name">FULL NAME*</label>
+          <input class="rsvp-input" id="f-name" type="text" required placeholder="Eleanor Vance">
+        </div>
+
+        <div class="rsvp-field">
+          <label class="preset-label" for="f-email">EMAIL*</label>
+          <input class="rsvp-input" id="f-email" type="email" required placeholder="eleanor@vance-atelier.com">
+        </div>
+
+        <div class="rsvp-field">
+          <label class="preset-label" for="f-phone">PHONE</label>
+          <input class="rsvp-input" id="f-phone" type="tel" placeholder="+39 02 456 65 87">
+        </div>
+
+        <div class="rsvp-field">
+          <label class="preset-label" for="f-type">CELEBRATION TYPE*</label>
+          <div class="rsvp-select-wrapper">
+            <select class="rsvp-select" id="f-type" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="wedding">Destination Wedding</option>
+              <option value="gala">Private Estate Gala</option>
+              <option value="anniversary">Milestone Anniversary</option>
+              <option value="brand">Brand &amp; Cultural Soirée</option>
+            </select>
+            <span class="rsvp-select-caret">▼</span>
+          </div>
+        </div>
+
+        <div class="rsvp-field">
+          <label class="preset-label" for="f-guests">ESTIMATED GUESTS*</label>
+          <input class="rsvp-input" id="f-guests" type="number" min="1" required placeholder="120">
+        </div>
+
+        <div class="rsvp-field">
+          <label class="preset-label" for="f-dest">PREFERRED DESTINATION</label>
+          <div class="rsvp-select-wrapper">
+            <select class="rsvp-select" id="f-dest">
+              <option value="" disabled selected>Select…</option>
+              <option value="rome">Rome &amp; Lazio Palazzos</option>
+              <option value="como">Lake Como &amp; Bellagio</option>
+              <option value="tuscany">Tuscany &amp; Florence</option>
+              <option value="amalfi">Amalfi Coast &amp; Capri</option>
+              <option value="riviera">French Riviera</option>
+              <option value="worldwide">Worldwide Private Estate</option>
+            </select>
+            <span class="rsvp-select-caret">▼</span>
+          </div>
+        </div>
+
+        <div class="rsvp-field span-2">
+          <label class="preset-label" for="f-msg">ADDITIONAL MESSAGE</label>
+          <textarea class="rsvp-textarea" id="f-msg" placeholder="Tell us about your preferred season, aesthetic vision, or celebration details..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit-btn" id="submit-btn">
+          <span class="form-submit-line"></span>
+          <span class="preset-eyebrow btn-text">SUBMIT</span>
+          <div class="form-submit-spinner"></div>
+          <span class="form-submit-line"></span>
+        </button>
+      </form>
+    </section>
+
+    <!-- ==========================================================================
+         8. FOOTER SECTION
+         ========================================================================== -->
+    <footer class="footer-section">
+      <div class="footer-names-row">
+        <h2 class="preset-h2">Larish</h2>
+        <span class="footer-names-amp">&amp;</span>
+        <h2 class="preset-h2">Events</h2>
+      </div>
+      <p class="preset-label footer-meta-text">Via Monte Napoleone 8, Milan · Largo di Porta San Pancrazio, Rome.</p>
+      <p class="preset-label footer-meta-text">BESPOKE CELEBRATIONS · 2026 — 2028</p>
+    </footer>
+  </main>
+
+  <!-- ==========================================================================
+       INLINE INTERACTIVE JAVASCRIPT (ZERO EXTERNAL FRAMEWORK OVERHEAD)
+       ========================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Lenis Smooth Scroll Initialization (with graceful fallback)
+      if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+          duration: 2.0,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+        });
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      }
+
+      // 2. Animated Number Counter (0 -> 24 over 2 seconds)
+      const counterEl = document.getElementById('counter-val');
+      let startTimestamp = null;
+      function stepCounter(timestamp) {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / 2000, 1);
+        const easeVal = 1 - Math.pow(1 - progress, 3);
+        counterEl.textContent = Math.floor(easeVal * 24);
+        if (progress < 1) {
+          requestAnimationFrame(stepCounter);
+        } else {
+          counterEl.textContent = '24';
+        }
+      }
+      requestAnimationFrame(stepCounter);
+
+      // 3. Falling Botanical Petals Simulation
+      const PETAL_SVGS = [
+        `data:image/svg+xml;utf8,${encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+            <defs>
+              <radialGradient id="p1" cx="42%" cy="38%" r="58%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="55%" stop-color="#f8f4ef"/>
+                <stop offset="85%" stop-color="#ebe3da"/>
+                <stop offset="100%" stop-color="#d5c7b8"/>
+              </radialGradient>
+            </defs>
+            <path d="M32 88 C24 64, 34 28, 60 22 C82 17, 98 36, 90 60 C83 80, 62 96, 40 94 Z" fill="url(#p1)" stroke="#cbbba9" stroke-width="0.8"/>
+            <path d="M35 88 C45 68, 56 46, 63 26" stroke="#d5c7b8" stroke-width="0.6" opacity="0.65"/>
+          </svg>
+        `)}`,
+        `data:image/svg+xml;utf8,${encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+            <defs>
+              <radialGradient id="p2" cx="48%" cy="42%" r="55%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="60%" stop-color="#f9f6f1"/>
+                <stop offset="90%" stop-color="#e8dfd5"/>
+                <stop offset="100%" stop-color="#d1c2b2"/>
+              </radialGradient>
+            </defs>
+            <path d="M42 92 C24 72, 26 38, 48 26 C74 22, 96 36, 88 60 C80 82, 58 96, 42 92 Z" fill="url(#p2)" stroke="#cbbba9" stroke-width="0.8"/>
+          </svg>
+        `)}`,
+        `data:image/svg+xml;utf8,${encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+            <defs>
+              <radialGradient id="p3" cx="50%" cy="45%" r="52%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="58%" stop-color="#f6f2ec"/>
+                <stop offset="88%" stop-color="#e5dcd2"/>
+                <stop offset="100%" stop-color="#cebfb0"/>
+              </radialGradient>
+            </defs>
+            <path d="M48 94 C32 70, 34 36, 58 22 C82 34, 86 68, 68 94 Z" fill="url(#p3)" stroke="#cbbba9" stroke-width="0.8"/>
+          </svg>
+        `)}`
+      ];
+
+      const BOUQUET_SVG = `data:image/svg+xml;utf8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+          <g stroke="#8a7d72" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M60 102 C58 82, 60 62, 60 44 M60 78 C50 70, 42 62, 38 54 M60 72 C70 64, 78 56, 82 48" stroke-width="1.6"/>
+            <circle cx="60" cy="40" r="15" fill="#faf8f5" stroke-width="1.4"/>
+            <circle cx="60" cy="40" r="4" fill="#8a7d72"/>
+          </g>
+        </svg>
+      `)}`;
+
+      const petalsLayer = document.getElementById('petals-container');
+      const particleConfigs = [
+        { left: 14, scale: 0.9, delay: 0, rot: 15, dir: 1, asset: 0, size: 68 },
+        { left: 48, scale: 1.1, delay: 1.8, rot: 45, dir: -1, asset: 1, size: 82 },
+        { left: 84, scale: 0.85, delay: 3.5, rot: 30, dir: 1, asset: 2, size: 64 },
+        { left: 28, scale: 1.0, delay: 5.2, rot: 60, dir: -1, asset: 0, size: 75 },
+        { left: 66, scale: 0.95, delay: 7.0, rot: 25, dir: 1, asset: 1, size: 70 },
+        { left: 92, scale: 1.05, delay: 2.4, rot: 50, dir: -1, asset: 2, size: 78 },
+        { left: 38, scale: 0.8, delay: 8.6, rot: 10, dir: 1, asset: 0, size: 60 }
+      ];
+
+      particleConfigs.forEach((cfg, i) => {
+        const item = document.createElement('div');
+        item.className = 'petal-item';
+        item.style.width = cfg.size + 'px';
+        item.style.height = cfg.size + 'px';
+        item.style.setProperty('--from-x', cfg.left + 'vw');
+        item.style.setProperty('--from-y', '-16vh');
+        item.style.setProperty('--to-x', (cfg.left + (cfg.dir * 6)) + 'vw');
+        item.style.setProperty('--land-y', '102vh');
+        item.style.setProperty('--scale', cfg.scale);
+        item.style.setProperty('--start-rot', cfg.rot + 'deg');
+        item.style.setProperty('--rotEnd', (cfg.rot + cfg.dir * 360) + 'deg');
+        item.style.setProperty('--flower-opacity', '1');
+        item.style.animationDelay = cfg.delay + 's';
+
+        const inner = document.createElement('div');
+        const img = document.createElement('img');
+        img.src = PETAL_SVGS[cfg.asset % PETAL_SVGS.length];
+        img.alt = '';
+        inner.appendChild(img);
+        item.appendChild(inner);
+
+        // Catch petal on click
+        item.addEventListener('click', () => {
+          if (item.classList.contains('caught')) return;
+          item.classList.add('caught');
+          img.src = BOUQUET_SVG;
+          setTimeout(() => {
+            item.classList.remove('caught');
+            img.src = PETAL_SVGS[cfg.asset % PETAL_SVGS.length];
+          }, 1800);
+        });
+
+        petalsLayer.appendChild(item);
+      });
+
+      // 4. Scroll Choreography: Hero Parting, Story 3D Convergence, Header Hide/Show, Sticky Button Auto-Hide
+      const navContainer = document.getElementById('nav-container');
+      const heroLeft = document.getElementById('hero-left');
+      const heroCenter = document.getElementById('hero-center');
+      const heroRight = document.getElementById('hero-right');
+      const messageSec = document.getElementById('message');
+      const storySec = document.getElementById('story');
+      const cards = [
+        document.getElementById('card-1'),
+        document.getElementById('card-2'),
+        document.getElementById('card-3'),
+        document.getElementById('card-4')
+      ];
+      const rsvpTitle = document.getElementById('rsvp-title');
+      const stickyBtn = document.getElementById('sticky-bottom-btn');
+
+      let lastScrollY = window.scrollY;
+
+      window.addEventListener('scroll', () => {
+        const curY = window.scrollY;
+        const vh = window.innerHeight;
+
+        // Header Directional Hide
+        if (curY > lastScrollY && curY > 80) {
+          navContainer.classList.add('scrolled-down');
+        } else {
+          navContainer.classList.remove('scrolled-down');
+        }
+        lastScrollY = curY;
+
+        const isMobile = window.innerWidth < 810;
+
+        // Hero Parting Progress (Mobile vertical depth vs Desktop horizontal parting)
+        const msgRect = messageSec.getBoundingClientRect();
+        if (msgRect.top < vh && msgRect.top > 0) {
+          const heroP = 1 - (msgRect.top / vh);
+          if (isMobile) {
+            heroLeft.style.transform = `translateY(${-heroP * 35}px)`;
+            heroLeft.style.opacity = Math.max(0, 1 - heroP * 1.4);
+
+            heroCenter.style.transform = `scale(${1 - heroP * 0.22}) translateY(${-heroP * 35}px)`;
+            heroCenter.style.opacity = Math.max(0, 1 - heroP * 1.25);
+
+            heroRight.style.transform = `translateY(${heroP * 25}px)`;
+            heroRight.style.opacity = Math.max(0, 1 - heroP * 1.4);
+          } else {
+            heroLeft.style.transform = `translateX(${-heroP * 150}px)`;
+            heroLeft.style.opacity = Math.max(0, 1 - heroP * 1.2);
+
+            heroCenter.style.transform = `scale(${1 - heroP * 0.3})`;
+            heroCenter.style.opacity = Math.max(0, 1 - heroP * 1.2);
+
+            heroRight.style.transform = `translateX(${heroP * 150}px)`;
+            heroRight.style.opacity = Math.max(0, 1 - heroP * 1.2);
+          }
+        } else if (msgRect.top <= 0) {
+          heroLeft.style.opacity = '0';
+          heroCenter.style.opacity = '0';
+          heroRight.style.opacity = '0';
+        } else {
+          heroLeft.style.transform = 'none';
+          heroLeft.style.opacity = '1';
+          heroCenter.style.transform = 'none';
+          heroCenter.style.opacity = '1';
+          heroRight.style.transform = 'none';
+          heroRight.style.opacity = '1';
+        }
+
+        // Story 3D Gallery: Mobile Scroll-Linked Tilt vs Desktop Pinned Convergence
+        if (isMobile) {
+          // MOBILE: Each card rotates, tilts in 3D, and settles as user scrolls past
+          cards.forEach((card, idx) => {
+            if (!card) return;
+            const rect = card.getBoundingClientRect();
+            // Progress p: 0 when card top is at viewport bottom (entering screen)
+            // 1 when card is comfortably centered (rect.top <= vh * 0.45)
+            const p = Math.min(Math.max((vh - rect.top) / (vh * 0.55), 0), 1);
+            const rem = 1 - p;
+
+            // Subtle ongoing drift as the card scrolls past center towards top
+            const upwardDrift = rect.top < vh * 0.45 ? (vh * 0.45 - rect.top) * 0.04 : 0;
+
+            let rot, rotX, rotY, x, y, scale;
+            if (idx === 0) {
+              rot = -4 - 10 * rem;
+              rotX = 20 * rem;
+              rotY = -20 * rem;
+              x = -35 * rem;
+              y = (35 * rem) - upwardDrift;
+              scale = 0.88 + 0.12 * p;
+            } else if (idx === 1) {
+              rot = 5 + 10 * rem;
+              rotX = 20 * rem;
+              rotY = 20 * rem;
+              x = 35 * rem;
+              y = (35 * rem) - upwardDrift;
+              scale = 0.88 + 0.12 * p;
+            } else if (idx === 2) {
+              rot = -5 - 12 * rem;
+              rotX = -20 * rem;
+              rotY = -20 * rem;
+              x = -35 * rem;
+              y = (35 * rem) - upwardDrift;
+              scale = 0.88 + 0.12 * p;
+            } else {
+              rot = 4 + 12 * rem;
+              rotX = -20 * rem;
+              rotY = 20 * rem;
+              x = 35 * rem;
+              y = (35 * rem) - upwardDrift;
+              scale = 0.88 + 0.12 * p;
+            }
+            const op = Math.min(1, 0.25 + p * 0.75);
+            card.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rot}deg) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(${scale})`;
+            card.style.opacity = op;
+          });
+        } else {
+          // DESKTOP: 2x2 Pinned Gallery Convergence
+          const storyRect = storySec.getBoundingClientRect();
+          const storyTrackLen = storyRect.height - vh;
+          if (storyTrackLen > 0) {
+            const storyP = Math.min(Math.max(-storyRect.top / storyTrackLen, 0), 1);
+            const rem = 1 - storyP;
+
+            if (cards[0]) {
+              cards[0].style.transform = `translate3d(${-100 * rem}px, ${-50 * rem}px, 0) rotate(${-10 * rem}deg) rotateX(${30 * rem}deg) rotateY(${-30 * rem}deg) scale(${0.8 + 0.2 * storyP})`;
+              cards[0].style.opacity = '1';
+            }
+            if (cards[1]) {
+              cards[1].style.transform = `translate3d(${150 * rem}px, ${-50 * rem}px, 0) rotate(${10 * rem}deg) rotateX(${30 * rem}deg) rotateY(${30 * rem}deg) scale(${0.8 + 0.2 * storyP})`;
+              cards[1].style.opacity = '1';
+            }
+            if (cards[2]) {
+              cards[2].style.transform = `translate3d(${-100 * rem}px, ${50 * rem}px, 0) rotate(${-20 * rem}deg) rotateX(${-30 * rem}deg) rotateY(${-30 * rem}deg) scale(${0.8 + 0.2 * storyP})`;
+              cards[2].style.opacity = '1';
+            }
+            if (cards[3]) {
+              cards[3].style.transform = `translate3d(${100 * rem}px, ${50 * rem}px, 0) rotate(${20 * rem}deg) rotateX(${-30 * rem}deg) rotateY(${30 * rem}deg) scale(${0.8 + 0.2 * storyP})`;
+              cards[3].style.opacity = '1';
+            }
+          }
+        }
+
+        // Ceremony Venue Image Parallax Zoom (Mobile & Desktop)
+        document.querySelectorAll('.ceremony-venue-col').forEach(venue => {
+          const rect = venue.getBoundingClientRect();
+          if (rect.top < vh && rect.bottom > 0) {
+            const vp = (vh - rect.top) / (vh + rect.height);
+            const img = venue.querySelector('.ceremony-image-mat img');
+            if (img) {
+              const scale = 1.05 - (vp * 0.05);
+              const transY = (vp - 0.5) * -16;
+              img.style.transform = `scale(${scale}) translateY(${transY}px)`;
+            }
+          }
+        });
+
+        // Sticky Bottom CTA Auto-Hide
+        const rsvpRect = rsvpTitle.getBoundingClientRect();
+        if (rsvpRect.top < vh * 0.8) {
+          stickyBtn.classList.add('hidden');
+        } else {
+          stickyBtn.classList.remove('hidden');
+        }
+      }, { passive: true });
+
+      // 5. Blur Entrance Reveal Handler (synchronous scroll + observer fallback)
+      const reveals = document.querySelectorAll('.blur-reveal');
+      function checkReveals() {
+        const vh = window.innerHeight;
+        reveals.forEach(r => {
+          if (!r.classList.contains('revealed')) {
+            const rect = r.getBoundingClientRect();
+            if (rect.top < vh + 80 && rect.bottom > -80) {
+              r.classList.add('revealed');
+            }
+          }
+        });
+      }
+      checkReveals();
+      window.addEventListener('scroll', checkReveals, { passive: true });
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('revealed');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: '120px 0px 80px 0px', threshold: 0.01 });
+      reveals.forEach(r => obs.observe(r));
+
+      // 6. Interactive FAQ Accordion
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const wasOpen = item.classList.contains('opened');
+          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('opened'));
+          if (!wasOpen) item.classList.add('opened');
+        });
+      });
+
+      // 7. Mobile Menu Drawer
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileOverlay = document.getElementById('mobile-overlay');
+      if (mobileBtn && mobileOverlay) {
+        mobileBtn.addEventListener('click', () => {
+          const isOpen = mobileOverlay.classList.toggle('open');
+          mobileBtn.textContent = isOpen ? 'close' : 'menu';
+        });
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileOverlay.classList.remove('open');
+            mobileBtn.textContent = 'menu';
+          });
+        });
+      }
+
+      // 8. RSVP Form Submit
+      const form = document.getElementById('rsvp-form');
+      const submitBtn = document.getElementById('submit-btn');
+      if (form && submitBtn) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          submitBtn.classList.add('loading');
+          setTimeout(() => {
+            submitBtn.classList.remove('loading');
+            submitBtn.classList.add('success');
+            submitBtn.querySelector('.btn-text').textContent = 'THANK YOU';
+          }, 1200);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
